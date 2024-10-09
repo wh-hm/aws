@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>みえるか</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+	<header>
+		<h1><a href="home.html">ロゴ</a></h1>
+		
+		<nav class="pc_nav">
+			<ul>
+				<li><a href="home.html">HOME</a></li>
+				<li><a href="lounge.html">ラウンジ</a></li>
+				<li><a href="maintenance.html">7階</a></li>
+				<li><a href="maintenance.html">8階</a></li>
+				<li><a href="maintenance.html">使い方</a></li>
+				<li><a href="contact.html">お問い合わせ</a></li>
+			</ul>
+		</nav>
+		
+		<div class="openbtn"><span></span><span></span><span></span>	</div>
+			<nav id="g-nav">
+				<div class = "gnav_in">
+			
+					<ul>
+						<li><a href="home.html">HOME</a></li>
+						<li><a href="lounge.html">ラウンジ</a></li>
+						<li><a href="maintenance.html">7階</a></li>
+						<li><a href="maintenance.html">8階</a></li>
+						<li><a href="maintenance.html">使い方</a></li>
+						<li><a href="contact.html">お問い合わせ</a></li>
+					</ul>
+				</div>
+			</nav>
+			
+	</header>
+	
+	<section id="home">
+		<div class="w1">
+			
+			<h2>イラストで見る</h2>
+			
+				<nav>
+					<ul>
+						<li><a href="lounge.html">ラウンジ</a></li>
+						<li><a href="maintenance.html">7階</a></li>
+						<li><a href="maintenance.html">8階</a></li>
+					</ul>
+				</nav>
+			
+			
+			<h2>カメラで見る</h2>
+			
+					<nav>
+					<ul>
+						<li><a href="lounge_camera.html">ラウンジ</a></li>
+						<li><a href="maintenance.html">7階</a></li>
+						<li><a href="maintenance.html">8階</a></li>
+					</ul>
+				</nav>
+			
+		</div>
+	</section>
+	
+	<form id="myForm">
+	<div id="review" class="review">
+		<div class="title">レビュー</div>
+			<div id="stars" class="review">
+				<span>
+				  <input id="review01" type="radio" name="review" value="5"><label for="review01" >★</label>
+				  <input id="review02" type="radio" name="review" value="4"><label for="review02">★</label>
+				  <input id="review03" type="radio" name="review" value="3"><label for="review03">★</label>
+				  <input id="review04" type="radio" name="review" value="2"><label for="review04">★</label>
+				  <input id="review05" type="radio" name="review" value="1"><label for="review05">★</label>
+				</span>
+  		</div>
+		<div id="review_info" class="review">
+			<div><label id="review_error"></label></div>
+			<textarea id="coment" name="レビュー内容" rows="1"></textarea>
+			<div><input type="button" value="×" onClick="close_review()" id="close"></div>
+			<div><input type="submit" value="送信" onClick="return review_submit()"></div>
+			</div>
+			<div><label id="text_return"></label></div>
+			<div><input type="button" value="戻る" onClick="modoru()" id="review_return" class="review2"></div>
+		</div>
+	</form>
+	
+	<footer>
+		<a href="https://www.nca.ac.jp/"><img src="images/school.png" alt="名古屋デザイン＆テクノロジー専門学校"></a>
+		<small>© 2024 TeamNagoya All rights reserved.</small>
+	</footer>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+	<script src="js/5-2-1.js"></script>
+	<script>
+		
+		window.onload = function(){
+			let sesssin = sessionStorage.getItem('school_number');
+			console.log(sesssin);
+			if(sesssin == null){
+				location.href = 'index.html';
+			}
+		}
+		var review_value = "0";
+		var text="無記入";
+		let school_number = sessionStorage.getItem('school_number');
+		
+		
+		function close_review(){
+			
+			let review = document.getElementById("review");	
+			review.className = "review2";
+		}
+		
+		function logout(){
+			sessionStorage.removeItem(school_number);
+			location.href = "hiddenindex.html";
+		}
+		function review_submit(){
+				
+			if(text == "" || text == null){
+				text = "無記入";
+			}else{
+				text = document.getElementById("coment").value;
+			}
+			let elements = document.getElementsByName('review');
+			let len = elements.length;
+			let checkValue = '';
+			let sum = 0;
+			
+			for (let i = 0; i < len; i++){
+				if (elements.item(i).checked){
+					sum = sum + 1;
+					review_value = elements.item(i).value;
+					
+				}
+			}
+			
+			if(sum == 0){
+				let error = document.getElementById("review_error");
+				error.innerHTML = "選択してください";
+				return false;
+			}else{
+				document.getElementById('myForm').addEventListener('submit', handleSubmit);
+		
+				let element = document.getElementById("stars");
+				element.className = "review2";
+				let element2 = document.getElementById("review_info");
+				element2.className = "review2";
+				let element3 = document.getElementById("review_return");
+				element3.className = "review";
+				let element4 = document.getElementById("text_return");
+				element4.innerHTML = "レビューありがとうございます！"
+				return true;
+			}
+		
+			
+		}
+		
+		
+		
+		function modoru(){
+			close_review();
+		}
+	
+	async function handleSubmit(event) {
+			
+		event.preventDefault();
+		const formData = new FormData(event.target);
+		const data = Object.fromEntries(formData.entries());
+		
+			
+		
+    // データを送信
+	const content={
+		'number' : school_number,
+		'coment': text,
+		'star' : review_value
+	}
+    const response = await fetch('https://fhjp15dj74.execute-api.ap-northeast-1.amazonaws.com/login_web_up/', {
+		
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+		
+        body: JSON.stringify(content)
+    });
+			
+	console.log(content);
+			
+    const result = await response.json();
+    console.log(response);
+	}
+		
+		async function handleSubmit2(event) {
+    
+    
+    event.preventDefault();
+    
+		
+    	const content = {
+        	'number': school_number
+    	};
+    
+    try {
+        const response = await fetch('https://t21xvbdmlk.execute-api.ap-northeast-1.amazonaws.com/web_db_get_login/', { // ここで'/dev'などを確認
+            method: 'POST',
+			
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Authorization': 'Bearer YOUR_TOKEN' // 認証が必要な場合、トークンを追加
+            },
+            body: JSON.stringify(content)
+        });
+        const result = await response.json();
+        console.log(result);
+		var db_result = JSON.stringify(result);
+		 
+		var db_result2 = JSON.parse(db_result);
+		console.log(db_result2);
+		let seki = document.getElementById('review');
+		if(db_result2.body == true){
+			
+			seki.className = 'review2';
+			
+		}else{
+			seki.className = 'review';
+			
+		}
+		
+    } catch (error) {
+        console.error('Fetch error:', error);
+        
+    }
+}
+
+window.addEventListener('load', handleSubmit2)
+
+	</script>
+</body>
+</html>

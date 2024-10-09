@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>みえるか</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+	<header>
+		<h1><a href="home.html">ロゴ</a></h1>
+		
+		<nav class="pc_nav">
+			<ul>
+				<li><a href="home.html">HOME</a></li>
+				<li><a href="lounge.html">ラウンジ</a></li>
+				<li><a href="maintenance.html">7階</a></li>
+				<li><a href="maintenance.html">8階</a></li>
+				<li><a href="maintenance.html">使い方</a></li>
+				<li><a href="contact.html">お問い合わせ</a></li>
+			</ul>
+		</nav>
+		
+		<div class="openbtn"><span></span><span></span><span></span>	</div>
+			<nav id="g-nav">
+				<div class = "gnav_in">
+			
+					<ul>
+						<li><a href="home.html">HOME</a></li>
+						<li><a href="lounge.html">ラウンジ</a></li>
+						<li><a href="maintenance.html">7階</a></li>
+						<li><a href="maintenance.html">8階</a></li>
+						<li><a href="maintenance.html">使い方</a></li>
+						<li><a href="contact.html">お問い合わせ</a></li>
+					</ul>
+				</div>
+			</nav>
+	</header>
+	
+	<section id="contact">
+		<div class="w1">
+			<h2>お問い合わせ</h2>
+			<form method="post" action="mail.php">
+			<table>
+				<tr>
+					<th>お名前</th>
+					<td><input type="text" name="名前"></td>
+				</tr>
+				<tr>
+					<th>学籍番号</th>
+					<td><input type="text" name="学籍番号"></td>
+				</tr>
+				<tr>
+					<th>お問い合わせ内容</th>
+					<td><textarea name="落ち合わせないよう" rows="5"></textarea></td>
+				</tr>
+			</table>
+			<div class="btn">
+		  	<input type="submit" value="送信"/>
+		  </div>
+	  </form>
+			
+			
+			
+		</div>
+	</section>
+	
+	
+	<footer>
+		<a href="https://www.nca.ac.jp/"><img src="images/school.png" alt="名古屋デザイン＆テクノロジー専門学校"></a>
+		<small>© 2024 TeamNagoya All rights reserved.</small>
+	</footer>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+	<script src="js/5-2-1.js"></script>
+	<script>
+		window.onload = function(){
+			let sesssin = sessionStorage.getItem('school_number');
+			console.log(sesssin);
+			if(sesssin == null){
+				location.href = 'index.html';
+			}
+		}
+	</script>
+</body>
+</html>

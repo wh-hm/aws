@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>みえるか</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+<script>
+  $(document).ready(function(){
+	$(".slider").bxSlider();
+	  
+	  slideWidth: 600
+  });
+</script>
+	
+
+
+</head>
+
+<body>
+	<header>
+		<h1><a href="home.html">ロゴ</a></h1>
+		
+		<nav class="pc_nav">
+			<ul>
+				<li><a href="home.html">HOME</a></li>
+				<li><a href="lounge.html">ラウンジ</a></li>
+				<li><a href="maintenance.html">7階</a></li>
+				<li><a href="maintenance.html">8階</a></li>
+				<li><a href="maintenance.html">使い方</a></li>
+				<li><a href="contact.html">お問い合わせ</a></li>
+			</ul>
+		</nav>
+		
+		<div class="openbtn"><span></span><span></span><span></span>	</div>
+			<nav id="g-nav">
+				<div class = "gnav_in">
+			
+					<ul>
+						<li><a href="home.html">HOME</a></li>
+						<li><a href="lounge.html">ラウンジ</a></li>
+						<li><a href="maintenance.html">7階</a></li>
+						<li><a href="maintenance.html">8階</a></li>
+						<li><a href="maintenance.html">使い方</a></li>
+						<li><a href="contact.html">お問い合わせ</a></li>
+					</ul>
+				</div>
+			</nav>
+	</header>
+	
+	<section id="lounge_camera">
+		<div class="w1">
+			<h2>~ラウンジの状況~</h2>
+			
+			<div class="text"><a href="lounge.html">現在の状況をイラストで見る</a></div>
+		</div>
+			<div class="w2">
+				<div class="slider">
+					<div><img src="images/rila1.png" alt=""></div>
+					<div><img src="images/rila2.png" alt=""></div>
+					<div><img src="images/rila3.png" alt=""></div>
+				</div>
+				
+				<div class="camera_longe">
+					
+						<div><img src="images/rila1.png" alt=""></div>
+						<div><img src="images/rila2.png" alt=""></div>
+					
+						<div><img src="images/rila3.png" alt=""></div>
+						<div><img src="images/rila1.png" alt=""></div>
+					
+					
+						<div><img src="images/rila2.png" alt=""></div>
+						<div><img src="images/rila3.png" alt=""></div>
+					
+				
+			</div>
+			
+				
+			</div>
+			
+			<div class="w1 info">
+				<div class="col">
+					<p>撮影時刻</p>
+					<label id="date"></label>
+				</div>
+				<div id="nowpeople">
+					<p>現在のラウンジ人数</p>
+					<div><label id="people"></label></div>
+					<p>人</p>
+				</div>
+				
+				<div class="btn"><input type="button" value="更新" onClick="sum_people()"></div>
+				
+				
+			
+		
+		</div>
+	</section>
+	
+	
+	<footer>
+		<a href="https://www.nca.ac.jp/"><img src="images/school.png" alt="名古屋デザイン＆テクノロジー専門学校"></a>
+		<small>© 2024 TeamNagoya All rights reserved.</small>
+	</footer>
+
+
+
+<script src="js/5-2-1.js"></script>
+<script>
+		window.onload = function(){
+			let sesssin = sessionStorage.getItem('school_number');
+			console.log(sesssin);
+			if(sesssin == null){
+				location.href = 'index.html';
+			}
+		}
+		var dt = new Date();
+		let hours = dt.getHours();
+		let minutes = dt.getMinutes();
+		
+		var date = document.getElementById("date");
+	
+		let yearmin = hours + ":" + minutes;
+		
+		date.innerHTML = yearmin;
+			
+        var apiUrl = 'https://fhjp15dj74.execute-api.ap-northeast-1.amazonaws.com/seki/gomi2';
+		
+        var opts = {
+            mode: 'cors' // CORSを有効にする
+        };
+		
+		var people;
+        fetch(apiUrl, opts)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+			
+				
+                return response.json();
+            })
+            .then(data => {
+                // レスポンスを処理するコード
+				
+				sum = data["sum"]
+				console.log(sum);
+				
+				let sumpeople = document.getElementById("people");
+	
+				sumpeople.innerHTML = sum;
+				
+				
+			
+            })
+            .catch(error => {
+                // エラー処理
+                console.error('There was a problem with the fetch operation:', error);
+            });
+	
+			function sum_people(){
+				var dt = new Date();
+				let hours = dt.getHours();
+				let minutes = dt.getMinutes();
+
+				var date = document.getElementById("date");
+
+				let yearmin = hours + ":" + minutes;
+
+				date.innerHTML = yearmin;
+		
+				var people;
+				fetch(apiUrl, opts)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Network response was not ok');
+						}
+
+
+						return response.json();
+					})
+					.then(data => {
+						// レスポンスを処理するコード
+
+						sum = data["sum"]
+						console.log(sum);
+
+						let sumpeople = document.getElementById("people");
+
+						sumpeople.innerHTML = sum;
+
+
+
+					})
+					.catch(error => {
+						// エラー処理
+						console.error('There was a problem with the fetch operation:', error);
+					});
+					}
+</script>
+
+</body>
+</html>
