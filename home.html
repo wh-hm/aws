@@ -70,7 +70,7 @@
 	<form id="myForm">
 	<div id="review" class="review3">
 		<div class="title">レビュー</div>
-			<div id="stars" class="review">
+			<div id="stars" class="review3">
 				<span>
 				  <input id="review01" type="radio" name="review" value="5"><label for="review01" >★</label>
 				  <input id="review02" type="radio" name="review" value="4"><label for="review02">★</label>
@@ -86,7 +86,7 @@
 			<div><input type="submit" value="送信" onClick="return review_submit()"></div>
 			</div>
 			<div><label id="text_return"></label></div>
-			<div><input type="button" value="戻る" onClick="modoru()" id="review_return" class="review2"></div>
+			<div><input type="button" value="戻る" onClick="modoru()" id="review_return" class="review3"></div>
 		</div>
 	</form>
 	
@@ -114,7 +114,7 @@
 		function close_review(){
 			
 			let review = document.getElementById("review");	
-			review.className = "review2";
+			review.className = "review3";
 		}
 		
 		function logout(){
@@ -149,11 +149,11 @@
 				document.getElementById('myForm').addEventListener('submit', handleSubmit);
 		
 				let element = document.getElementById("stars");
-				element.className = "review2";
+				element.className = "review3";
 				let element2 = document.getElementById("review_info");
-				element2.className = "review2";
+				element2.className = "review3";
 				let element3 = document.getElementById("review_return");
-				element3.className = "review";
+				element3.className = "review2";
 				let element4 = document.getElementById("text_return");
 				element4.innerHTML = "レビューありがとうございます！"
 				return true;
