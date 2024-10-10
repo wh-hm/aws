@@ -1,6 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
+.review2{
+	display: block;
+	margin: 0 auto;
+}
 
+.review3{
+	display: none;
+}
 
 body {
 	margin: 0;
@@ -633,14 +640,7 @@ body{
 	right: -10px;
 }
 
-.review{
-	display: block;
-	margin: 0 auto;
-}
 
-.review2{
-	display: none;
-}
 
 
 @media screen and (min-width: 1px) and (max-width: 850px) {
