@@ -107,7 +107,7 @@
 			}
 		}
 		var review_value = "0";
-		var text="無記入";
+		var text = document.getElementById("coment").value;
 		let school_number = sessionStorage.getItem('school_number');
 		
 		
@@ -125,8 +125,6 @@
 				
 			if(text == "" || text == null){
 				text = "無記入";
-			}else{
-				text = document.getElementById("coment").value;
 			}
 			let elements = document.getElementsByName('review');
 			let len = elements.length;
