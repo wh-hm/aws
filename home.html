@@ -88,11 +88,15 @@
 			<div><label id="text_return"></label></div>
 			<div><input type="button" value="戻る" onClick="modoru()" id="review_return" class="review3"></div>
 		</div>
+		
 	</form>
 	
 	<footer>
+		<div><input type="button" value="ログアウト" onClick="logout()" id="logoutbtn"></div>
+		<div class="col">
 		<a href="https://www.nca.ac.jp/"><img src="images/school.png" alt="名古屋デザイン＆テクノロジー専門学校"></a>
 		<small>© 2024 TeamNagoya All rights reserved.</small>
+		</div>
 	</footer>
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
@@ -119,7 +123,7 @@
 		
 		function logout(){
 			sessionStorage.removeItem(school_number);
-			location.href = "hiddenindex.html";
+			location.href = "index.html";
 		}
 		function review_submit(){
 				

@@ -106,8 +106,11 @@
 	
 	
 	<footer>
+		<div><input type="button" value="ログアウト" onClick="logout()" id="logoutbtn"></div>
+		<div class="col">
 		<a href="https://www.nca.ac.jp/"><img src="images/school.png" alt="名古屋デザイン＆テクノロジー専門学校"></a>
 		<small>© 2024 TeamNagoya All rights reserved.</small>
+		</div>
 	</footer>
 
 
@@ -121,6 +124,17 @@
 				location.href = 'index.html';
 			}
 		}
+		
+		let school_number = sessionStorage.getItem('school_number');
+		
+		
+		
+		function logout(){
+			sessionStorage.removeItem(school_number);
+			location.href = "index.html";
+		}
+	
+	
 		var dt = new Date();
 		let hours = dt.getHours();
 		let minutes = dt.getMinutes();

@@ -25,8 +25,29 @@
 	
 	
 	<footer>
+		<div><input type="button" value="ログアウト" onClick="logout()" id="logoutbtn"></div>
+		<div class="col">
 		<a href="https://www.nca.ac.jp/"><img src="images/school.png" alt="名古屋デザイン＆テクノロジー専門学校"></a>
 		<small>© 2024 TeamNagoya All rights reserved.</small>
+		</div>
 	</footer>
+	<script>
+		
+		window.onload = function(){
+			let sesssin = sessionStorage.getItem('school_number');
+			console.log(sesssin);
+			if(sesssin == null){
+				location.href = 'index.html';
+			}
+		}
+		let school_number = sessionStorage.getItem('school_number');
+		
+		
+		
+		function logout(){
+			sessionStorage.removeItem(school_number);
+			location.href = "index.html";
+		}
+	</script>
 </body>
 </html>
