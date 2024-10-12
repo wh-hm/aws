@@ -17,12 +17,15 @@ body {
 	min-height: 100vh;
 	line-height: 1.5em;
 }
-
+h1 img{
+	width: 80px;
+	margin: 0.3em 0 0.3em 1em;
+}
 
 header{
 	background: #ffa726;
 	position: relative;
-	height: 50px;
+	height: 60px;
 }
 
 a{
