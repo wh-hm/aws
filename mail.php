@@ -30,7 +30,7 @@ if (version_compare(PHP_VERSION, '5.1.0', '>=')) {//PHP5.1.0以上の場合の�
 //---------------------------　必須設定　必ず設定してください　-----------------------
 
 //サイトのトップページのURL　※デフォルトでは送信完了後に「トップページへ戻る」ボタンが表示されますので
-$site_top = "https://wh-hm.github.io/aws/home.html";
+$site_top = "https://wh-hm.github.io/aws/index.html";
 
 //管理者のメールアドレス ※メールを受け取るメールアドレス(複数指定する場合は「,」で区切ってください 例 $to = "aa@aa.aa,bb@bb.bb";)
 $to = "ncr2319wh0016@edu.nca.ac.jp";
@@ -68,7 +68,7 @@ $useToken = 1;
 $BccMail = "";
 
 // 管理者宛に送信されるメールのタイトル（件名）
-$subject = "ホームページのお問い合わせ";
+$subject = "みえるかのお問い合わせ";
 
 // 送信確認画面の表示(する=1, しない=0)
 $confirmDsp = 1;
@@ -79,7 +79,7 @@ $confirmDsp = 1;
 $jumpPage = 0;
 
 // 送信完了後に表示するページURL（上記で1を設定した場合のみ）※httpから始まるURLで指定ください。（相対パスでも基本的には問題ないです）
-$thanksPage = "https://wh-hm.github.io/aws/home.html";
+$thanksPage = "https://wh-hm.github.io/aws/index.html";
 
 // 必須入力項目を設定する(する=1, しない=0)
 $requireCheck = 0;
